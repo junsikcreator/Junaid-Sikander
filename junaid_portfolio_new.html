@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Junaid Sikander — Creative Writer & Digital Specialist</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f7f4ef;
+  --surface: #eeeae3;
+  --surface2: #e4e0d8;
+  --accent: #c8402a;
+  --accent2: #8b2515;
+  --text: #0f0f0f;
+  --muted: #6b6558;
+  --border: rgba(15,15,15,0.12);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Syne', sans-serif;
+  font-weight: 400;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* CUSTOM CURSOR */
+.cursor {
+  width: 8px; height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.15s ease;
+}
+.cursor-ring {
+  width: 32px; height: 32px;
+  border: 1px solid rgba(232,197,71,0.4);
+  border-radius: 50%;
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9998;
+  transition: all 0.08s ease;
+}
+
+/* NOISE TEXTURE OVERLAY */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.4;
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: 2rem 5vw;
+  position: relative;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--accent);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.nav {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav a {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav a:hover { color: var(--accent); }
+
+.hero-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 0;
+}
+
+.hero-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--accent);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.hero-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(4rem, 10vw, 9rem);
+  font-weight: 300;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  margin-bottom: 2rem;
+}
+
+.hero-name em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hero-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: var(--muted);
+  max-width: 600px;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+.hero-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.hero-contact {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+
+.hero-contact a {
+  color: var(--text);
+  text-decoration: none;
+  display: block;
+  margin-bottom: 0.3rem;
+  transition: color 0.2s;
+}
+.hero-contact a:hover { color: var(--accent); }
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.9rem 2rem;
+  background: var(--accent);
+  color: #f7f4ef;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-primary:hover { background: var(--text); }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.9rem 2rem;
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: 'Syne', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+.hero-ctas {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* SKILLS TICKER */
+.ticker {
+  background: var(--accent);
+  padding: 0.7rem 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ticker-inner {
+  display: inline-block;
+  animation: ticker 20s linear infinite;
+}
+
+.ticker span {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #f7f4ef;
+  margin: 0 2rem;
+}
+
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* SECTION BASE */
+section {
+  padding: 6rem 5vw;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--accent);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+/* WORK SAMPLES */
+.samples-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-bottom: 5rem;
+  align-items: end;
+}
+
+.samples-intro p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skill-pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  transition: all 0.2s;
+}
+.skill-pill:hover { border-color: var(--accent); color: var(--accent); }
+
+/* SAMPLE CARDS */
+.samples-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5px;
+  background: var(--border);
+}
+
+.sample-card {
+  background: var(--bg);
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+  cursor: pointer;
+}
+
+.sample-card:hover { background: var(--surface); }
+
+.sample-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px;
+  height: 0;
+  background: var(--accent);
+  transition: height 0.4s ease;
+}
+.sample-card:hover::before { height: 100%; }
+
+.sample-number {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--accent);
+  letter-spacing: 0.2em;
+  margin-bottom: 1.5rem;
+  opacity: 0.6;
+}
+
+.sample-type {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem;
+  color: var(--accent2);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+
+.sample-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+.sample-excerpt {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.sample-content {
+  display: none;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.sample-card.expanded .sample-content { display: block; }
+
+.sample-body {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: rgba(15,15,15,0.8);
+  margin-bottom: 1rem;
+}
+
+.sample-body strong {
+  color: var(--accent);
+  font-weight: 600;
+  font-style: normal;
+}
+
+.expand-btn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: none;
+  border: none;
+  cursor: none;
+  padding: 0;
+  transition: opacity 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.expand-btn:hover { opacity: 0.7; }
+
+.expand-icon {
+  display: inline-block;
+  transition: transform 0.3s;
+}
+.sample-card.expanded .expand-icon { transform: rotate(45deg); }
+
+/* SCRIPT BLOCK */
+.script-excerpt {
+  background: #e4e0d8;
+  padding: 1.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  line-height: 1.9;
+  color: rgba(15,15,15,0.75);
+  margin: 1rem 0;
+  border-left: 2px solid var(--accent);
+}
+
+.script-direction {
+  color: #c8402a;
+  font-style: italic;
+  opacity: 0.7;
+}
+
+/* SEO KEYWORDS */
+.keyword-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 1rem;
+}
+
+.keyword {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem;
+  padding: 0.25rem 0.6rem;
+  background: #e4e0d8;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+
+/* FREE OFFER BANNER */
+.free-banner {
+  margin: 5rem 5vw 0;
+  padding: 2.5rem 3rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2rem;
+  align-items: center;
+}
+
+.free-banner h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  font-weight: 300;
+  margin-bottom: 0.5rem;
+}
+
+.free-banner p {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+}
+
+.free-badge {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #f7f4ef;
+  background: var(--accent);
+  padding: 0.3rem 0.8rem;
+  display: inline-block;
+  margin-bottom: 0.8rem;
+}
+
+/* CONTACT */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contact-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.contact-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem;
+  color: var(--accent);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.contact-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.contact-value:hover { color: var(--accent); }
+
+.contact-note {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--muted);
+  line-height: 1.6;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+/* FOOTER */
+footer {
+  padding: 2rem 5vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer p {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-main > * {
+  animation: fadeUp 0.8s ease both;
+}
+.hero-eyebrow { animation-delay: 0.1s; }
+.hero-name { animation-delay: 0.2s; }
+.hero-desc { animation-delay: 0.3s; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .hero-top { flex-direction: column; gap: 1rem; }
+  .nav { flex-wrap: wrap; justify-content: center; }
+  .hero-bottom { flex-direction: column; gap: 1.5rem; }
+  .samples-intro { grid-template-columns: 1fr; gap: 2rem; }
+  .samples-grid { grid-template-columns: 1fr; }
+  .free-banner { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+  footer { flex-direction: column; gap: 1rem; text-align: center; }
+  body { cursor: auto; }
+  .cursor, .cursor-ring { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-top">
+    <div class="logo">JS — Digital Creative</div>
+    <ul class="nav">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="https://docs.google.com/document/d/1nI4WYOiIVc-XI40oNn9Zua47dLIQL_JZ/edit?usp=drive_link&ouid=101760117847863832953&rtpof=true&sd=true" target="_blank">CV</a></li>
+    </ul>
+  </div>
+
+  <div class="hero-main">
+    <div class="hero-eyebrow">Available for remote work worldwide</div>
+    <h1 class="hero-name">
+      Junaid<br><em>Sikander</em>
+    </h1>
+    <p class="hero-desc">Writer, researcher, and digital strategist. I turn complex ideas into content people actually read.</p>
+  </div>
+
+  <div class="hero-bottom">
+    <div class="hero-contact">
+      <a href="mailto:junsik.freelance@gmail.com">junsik.freelance@gmail.com</a>
+      <a href="https://wa.me/923094048077">+92 309 4048077 — WhatsApp</a>
+      <span>Lahore, Pakistan</span>
+    </div>
+    <div class="hero-ctas">
+      <a href="#work" class="btn-primary">See My Work ↓</a>
+      <a href="https://docs.google.com/document/d/1nI4WYOiIVc-XI40oNn9Zua47dLIQL_JZ/edit?usp=drive_link&ouid=101760117847863832953&rtpof=true&sd=true" target="_blank" class="btn-secondary">View CV ↗</a>
+    </div>
+  </div>
+</header>
+
+<!-- SKILLS TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span>SEO Writing</span><span>★</span>
+    <span>YouTube Scripting</span><span>★</span>
+    <span>Copywriting</span><span>★</span>
+    <span>Research & Analysis</span><span>★</span>
+    <span>AI Image Generation</span><span>★</span>
+    <span>Amazon VA</span><span>★</span>
+    <span>Video Editing</span><span>★</span>
+    <span>Prompt Engineering</span><span>★</span>
+    <span>Blog Writing</span><span>★</span>
+    <span>SEO Writing</span><span>★</span>
+    <span>YouTube Scripting</span><span>★</span>
+    <span>Copywriting</span><span>★</span>
+    <span>Research & Analysis</span><span>★</span>
+    <span>AI Image Generation</span><span>★</span>
+    <span>Amazon VA</span><span>★</span>
+    <span>Video Editing</span><span>★</span>
+    <span>Prompt Engineering</span><span>★</span>
+    <span>Blog Writing</span><span>★</span>
+  </div>
+</div>
+
+<!-- WORK SAMPLES -->
+<section id="work">
+  <div class="section-label">Work Samples</div>
+
+  <div class="samples-intro">
+    <div>
+      <h2 class="section-title">Things I have<br><em>actually built.</em></h2>
+    </div>
+    <div>
+      <p>Click any card to read the full sample. Every piece below was written from scratch — no templates, no fluff.</p>
+      <br>
+      <div class="skills-list">
+        <span class="skill-pill">SEO Writing</span>
+        <span class="skill-pill">YouTube Scripting</span>
+        <span class="skill-pill">Copywriting</span>
+        <span class="skill-pill">Research</span>
+        <span class="skill-pill">Amazon VA</span>
+        <span class="skill-pill">AI Prompting</span>
+        <span class="skill-pill">Video Editing</span>
+        <span class="skill-pill">Prompt Engineering</span>
+        <span class="skill-pill">Blog Writing</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="samples-grid">
+
+    <!-- CARD 1: SEO Blog -->
+    <div class="sample-card" onclick="toggleCard(this)">
+      <div class="sample-number">01 / 09</div>
+      <div class="sample-type">SEO Blog Article</div>
+      <h3 class="sample-title">Why Your Credit Card Is Actually a Financial Weapon</h3>
+      <p class="sample-excerpt">Most people treat their credit card like a liability. They swipe, panic, pay the minimum — and wonder why they are always broke.</p>
+      <button class="expand-btn"><span class="expand-icon">+</span> Read Sample</button>
+      <div class="sample-content">
+        <p class="sample-body">Most people treat their credit card like a liability. They swipe, they panic, they pay the minimum — and wonder why they are always broke. But here is what the banks do not advertise: used correctly, a credit card is one of the most powerful financial tools you will ever hold.</p>
+        <p class="sample-body">The secret is not in the plastic. It is in the system behind it — reward points, cashback structures, and interest-free periods that function like a short-term, zero-cost loan when you know what you are doing.</p>
+        <p class="sample-body"><strong>Start here:</strong> never carry a balance past your billing cycle. This single habit eliminates interest entirely. From there, align your card's reward category with your highest monthly expense — groceries, fuel, online shopping — and watch passive cashback accumulate without changing how you spend.</p>
+        <p class="sample-body">The people who benefit most from credit cards are not the ones spending the most. They are the ones who read the fine print, time their purchases, and treat every swipe as a transaction with a return on investment.</p>
+        <div class="keyword-cloud">
+          <span class="keyword">credit card tips</span>
+          <span class="keyword">cashback strategy</span>
+          <span class="keyword">personal finance</span>
+          <span class="keyword">financial literacy</span>
+          <span class="keyword">credit card rewards</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 2: YouTube Script -->
+    <div class="sample-card" onclick="toggleCard(this)">
+      <div class="sample-number">02 / 09</div>
+      <div class="sample-type">YouTube Script — Hook + Intro</div>
+      <h3 class="sample-title">The Debt Trap: How Countries Borrow Their Way Into Collapse</h3>
+      <p class="sample-excerpt">A faceless finance script engineered for 80% retention in the first 30 seconds. Pattern interrupt open, clear stakes, emotional pull.</p>
+      <button class="expand-btn"><span class="expand-icon">+</span> Read Sample</button>
+      <div class="sample-content">
+        <div class="script-excerpt">
+<span class="script-direction">[OPEN on black. Slow zoom on falling currency notes.]</span>
+
+NARRATOR (V.O.):
+In 2022, Sri Lanka ran out of money.
+Not metaphorically. Literally.
+No fuel. No medicine. No foreign reserves.
+A nation of 22 million people — broke.
+
+<span class="script-direction">[Cut to graph: Sri Lanka debt-to-GDP climbing]</span>
+
+But here is the thing nobody tells you.
+Sri Lanka did not stumble into this overnight.
+They were lent into it.
+Dollar by dollar. Loan by loan.
+And the same pattern is playing out
+in 12 other countries right now.
+
+<span class="script-direction">[Title card: "THE DEBT TRAP"]</span>
+
+Today we follow the money.
+And show you exactly how sovereign debt
+becomes a nation's cage.
+        </div>
+        <p class="sample-body">Hook structure: pattern interrupt open, specific stakes established before title card, promise of revelation. Designed to stop scroll in first 3 seconds.</p>
+      </div>
+    </div>
+
+    <!-- CARD 3: Copywriting -->
+    <div class="sample-card" onclick="toggleCard(this)">
+      <div class="sample-number">03 / 09</div>
+      <div class="sample-type">Copywriting — Landing Page</div>
+      <h3 class="sample-title">SaaS Product Launch — Above the Fold Copy</h3>
+      <p class="sample-excerpt">High-converting landing page copy for a productivity tool. Benefit-first, zero jargon, clear call to action.</p>
+      <button class="expand-btn"><span class="expand-icon">+</span> Read Sample</button>
+      <div class="sample-content">
+        <p class="sample-body"><strong>Headline:</strong> Stop Managing Tasks. Start Finishing Them.</p>
+        <p class="sample-body"><strong>Subheadline:</strong> Most tools help you organize your work. Flowdesk helps you actually do it. Built for people who are tired of moving cards around a board and calling it productivity.</p>
+        <p class="sample-body"><strong>Bullet points:</strong><br>
+        — See everything due today in one view, no setup needed<br>
+        — Works the way your brain works, not the other way around<br>
+        — 10,000+ teams shipped faster in their first week</p>
+        <p class="sample-body"><strong>CTA:</strong> Start free — no credit card, no tutorial, no excuses.</p>
+      </div>
+    </div>
+
+    <!-- CARD 4: Research -->
+    <div class="sample-card" onclick="toggleCard(this)">
+      <div class="sample-number">04 / 09</div>
+      <div class="sample-type">Research & Analysis</div>
+      <h3 class="sample-title">YouTube Niche Signal Strategy for a Finance Channel</h3>
+      <p class="sample-excerpt">Full research document built for a finance YouTube channel from scratch — keyword mapping, algorithm signals, audience targeting.</p>
+      <button class="expand-btn"><span class="expand-icon">+</span> Read Sample</button>
+      <div class="sample-content">
+        <p class="sample-body"><strong>Objective:</strong> Signal a clear niche to YouTube's recommendation engine from Day 1 so the algorithm knows exactly who to show the channel to.</p>
+        <p class="sample-body"><strong>Primary keyword clusters:</strong> global economy, financial systems, debt crisis, money and power, how central banks work, why currencies collapse.</p>
+        <p class="sample-body"><strong>Long-tail targets:</strong> "why is [country] economy failing," "how does the IMF actually work," "explained simply" variations for each core topic.</p>
+        <p class="sample-body"><strong>Watch history strategy:</strong> Mapped competitor channels, identified content gaps, built a 30-day watch and engagement plan to train the algorithm before first upload.</p>
+        <p class="sample-body"><strong>Deliverables produced:</strong> channel name, banner design, channel description, keyword map, title templates, thumbnail language guide, niche signal plan.</p>
+      </div>
+    </div>
+
+    <!-- CARD 5: Amazon VA -->
+    <div class="sample-card" onclick="toggleCard(this)">
+      <div class="sample-number">05 / 09</div>
+      <div class="sample-type">Amazon VA — Product Listing</div>
+      <h3 class="sample-title">Optimized Amazon Listing for a Wireless Keyboard</h3>
+      <p class="sample-excerpt">SEO-optimized Amazon product listing with keyword-rich title, bullet points, and backend search terms for maximum visibility.</p>
+      <button class="expand-btn"><span class="expand-icon">+</span> Read Sample</button>
+      <div class="sample-content">
+        <p class="sample-body"><strong>Title:</strong> Wireless Bluetooth Keyboard — Ultra-Slim Rechargeable Multi-Device Keyboard for Mac, Windows, iPad, Tablet | Silent Keys | 2.4GHz + Bluetooth 5.0</p>
+        <p class="sample-body"><strong>Bullet 1:</strong> Connect to 3 devices at once and switch instantly — laptop, tablet, and phone all stay connected. No unplugging, no re-pairing, no wasted time.</p>
+        <p class="sample-body"><strong>Bullet 2:</strong> Whisper-quiet keys that will not disturb anyone around you — perfect for offices, libraries, or late nights when everyone else is asleep.</p>
+        <p class="sample-body"><strong>Bullet 3:</strong> One charge lasts up to 90 days. Plug in for 2 hours, forget about it for 3 months.</p>
+        <div class="keyword-cloud">
+          <span class="keyword">wireless keyboard</span>
+          <span class="keyword">bluetooth keyboard mac</span>
+          <span class="keyword">multi-device keyboard</span>
+          <span class="keyword">silent keyboard office</span>
+          <span class="keyword">rechargeable keyboard</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 6: Prompt Engineering -->
+    <div class="sample-card" onclick="toggleCard(this)">
+      <div class="sample-number">06 / 09</div>
+      <div class="sample-type">Prompt Engineering</div>
+      <h3 class="sample-title">System Prompt for a Finance Content AI Assistant</h3>
+      <p class="sample-excerpt">A structured system prompt that turns a general AI model into a specialized finance content writer with consistent voice and tone.</p>
+      <button class="expand-btn"><span class="expand-icon">+</span> Read Sample</button>
+      <div class="sample-content">
+        <div class="script-excerpt">
+You are a finance content writer for a YouTube channel focused on global economics, debt, and financial systems.
+
+Your writing style is:
+- Conversational but intelligent — never dumbed down, never academic
+- Direct — one idea per sentence, no filler words
+- Story-driven — always open with a real event, a number, or a question
+- Neutral — present facts, let the viewer form opinions
+
+When writing scripts:
+- Hook must be under 30 seconds
+- Every paragraph earns the next — if a line does not add tension or information, cut it
+- End with a question that makes the viewer think, not a call to subscribe
+
+Tone reference: Bloomberg Quicktake meets plain English.
+        </div>
+        <p class="sample-body">This prompt was built and tested across 20+ scripts. Output consistency improved by eliminating filler, reducing average script time by 18% without losing information density.</p>
+      </div>
+    </div>
+
+    <!-- CARD 7: AI Image Generation -->
+    <div class="sample-card" onclick="toggleCard(this)">
+      <div class="sample-number">07 / 09</div>
+      <div class="sample-type">AI Image Generation — Prompt Design</div>
+      <h3 class="sample-title">YouTube Thumbnail Prompt System for Finance Channel</h3>
+      <p class="sample-excerpt">A repeatable prompt framework for generating high-CTR YouTube thumbnails using Midjourney and Leonardo AI.</p>
+      <button class="expand-btn"><span class="expand-icon">+</span> Read Sample</button>
+      <div class="sample-content">
+        <div class="script-excerpt">
+Base prompt framework:
+
+[Visual subject] in [mood/lighting], [camera angle], [color palette], editorial style, cinematic, high contrast, no text, 16:9 thumbnail composition --ar 16:9 --style raw --q 2
+
+Example — Debt Crisis video:
+Crumbling government building at dusk, warm orange sky, low angle shot looking up, desaturated except for golden highlights, editorial documentary style, cinematic, high contrast, no text, 16:9 thumbnail composition --ar 16:9 --style raw --q 2
+
+Negative prompts: cartoon, illustration, stock photo, text overlay, watermark, blurry, oversaturated
+        </div>
+        <p class="sample-body">This framework was used to generate 15+ thumbnails for the Reverse Theory channel. Average prompt-to-usable-image ratio: 1 in 3, which is above platform average for complex editorial styles.</p>
+      </div>
+    </div>
+
+    <!-- CARD 8: Video Editing -->
+    <div class="sample-card" onclick="toggleCard(this)">
+      <div class="sample-number">08 / 09</div>
+      <div class="sample-type">Video Editing — Strategy</div>
+      <h3 class="sample-title">Short-Form Editing Framework for YouTube Shorts</h3>
+      <p class="sample-excerpt">A pacing and structure framework for editing short-form content that retains viewers past the 15-second drop-off point.</p>
+      <button class="expand-btn"><span class="expand-icon">+</span> Read Sample</button>
+      <div class="sample-content">
+        <p class="sample-body"><strong>The 3-second rule:</strong> First cut must happen before second 3. No exceptions. Static openers lose 40% of viewers before the hook lands.</p>
+        <p class="sample-body"><strong>Pacing structure for 60-second shorts:</strong><br>
+        0-3s: Visual hook — something unexpected on screen<br>
+        3-8s: Audio hook — the most interesting line of the script<br>
+        8-45s: Core content — one cut every 2-4 seconds<br>
+        45-60s: Payoff + loop trigger — end on something that makes them rewatch</p>
+        <p class="sample-body"><strong>Sound design:</strong> Subtle background music at -18db, sound effects on every cut, silence used deliberately for emphasis — not by accident.</p>
+        <p class="sample-body"><strong>Caption style:</strong> Single word highlighted per beat, high contrast, positioned at 60% from top — avoids both the profile picture and the comment bar.</p>
+      </div>
+    </div>
+
+    <!-- CARD 9: Blog Writing -->
+    <div class="sample-card" onclick="toggleCard(this)">
+      <div class="sample-number">09 / 09</div>
+      <div class="sample-type">Blog Writing — Long Form</div>
+      <h3 class="sample-title">How to Build a Second Income Without Quitting Your Job</h3>
+      <p class="sample-excerpt">A practical long-form blog post targeting people who want financial independence but do not know where to start.</p>
+      <button class="expand-btn"><span class="expand-icon">+</span> Read Sample</button>
+      <div class="sample-content">
+        <p class="sample-body">Most people who want a second income make the same mistake: they try to build a business before they have validated a single idea. They spend three months setting up a website, designing a logo, and registering a company name — for a product nobody has confirmed they want to buy.</p>
+        <p class="sample-body"><strong>Start smaller.</strong> Find one person who will pay you for one thing. Not a thousand customers. One. That first transaction teaches you more about your market than any amount of planning.</p>
+        <p class="sample-body">The best second incomes in 2025 share three things: they leverage what you already know, they can be done in under two hours a day, and they do not require you to be on camera or build a following from scratch.</p>
+        <p class="sample-body">Service businesses — writing, research, editing, consulting — are the fastest path to your first dollar online. Not because they scale the best, but because the feedback loop is immediate. Someone pays you, you learn what they value, you get better, you charge more.</p>
+        <div class="keyword-cloud">
+          <span class="keyword">second income ideas</span>
+          <span class="keyword">freelancing for beginners</span>
+          <span class="keyword">make money online</span>
+          <span class="keyword">side hustle 2025</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FREE OFFER BANNER -->
+  <div class="free-banner">
+    <div>
+      <span class="free-badge">Free Trial</span>
+      <h3>Not sure yet? Let me prove it first.</h3>
+      <p>Get one free sample piece — up to 200 words — before you commit to anything. One revision included. No payment, no pressure. If you like what you see, we talk.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:0.8rem;">
+      <a href="https://wa.me/923094048077" class="btn-primary" style="justify-content:center;">WhatsApp ↗</a>
+      <a href="mailto:junsik.freelance@gmail.com?subject=Free Sample Request&body=Hi Junaid, I would like to request a free 200-word sample. Here is my project brief:" class="btn-secondary" style="justify-content:center;">Gmail ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Contact</div>
+  <div class="contact-grid">
+    <div>
+      <h2 class="section-title">Let us work<br><em>together.</em></h2>
+    </div>
+    <div>
+      <div class="contact-info">
+        <div class="contact-item">
+          <span class="contact-label">Email</span>
+          <a href="mailto:junsik.freelance@gmail.com" class="contact-value">junsik.freelance@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">WhatsApp</span>
+          <a href="https://wa.me/923094048077" class="contact-value">+92 309 4048077</a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Location</span>
+          <span class="contact-value">Lahore, Pakistan — Remote Worldwide</span>
+        </div>
+
+      </div>
+      <br>
+      <p class="contact-note">I reply within 24 hours. If you have a project in mind — big or small — just send a message and tell me what you need.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Junaid Sikander — Content Writer & Digital Specialist</p>
+  <p>Lahore, Pakistan — Available Worldwide</p>
+</footer>
+
+<script>
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+
+document.addEventListener('mousemove', e => {
+  cursor.style.left = (e.clientX - 4) + 'px';
+  cursor.style.top = (e.clientY - 4) + 'px';
+  ring.style.left = (e.clientX - 16) + 'px';
+  ring.style.top = (e.clientY - 16) + 'px';
+});
+
+document.querySelectorAll('a, button, .sample-card').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursor.style.transform = 'scale(2.5)';
+    ring.style.transform = 'scale(1.5)';
+    ring.style.borderColor = 'rgba(232,197,71,0.8)';
+  });
+  el.addEventListener('mouseleave', () => {
+    cursor.style.transform = 'scale(1)';
+    ring.style.transform = 'scale(1)';
+    ring.style.borderColor = 'rgba(232,197,71,0.4)';
+  });
+});
+
+function toggleCard(card) {
+  const isExpanded = card.classList.contains('expanded');
+  document.querySelectorAll('.sample-card').forEach(c => c.classList.remove('expanded'));
+  if (!isExpanded) card.classList.add('expanded');
+}
+</script>
+</body>
+</html>
